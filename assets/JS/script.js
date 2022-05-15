@@ -1,8 +1,5 @@
 // Assignment code here
 
-//RNG function
-var rng = function (arg) {};
-
 //global variables for password generation
 var numbers = "1234567890";
 var lowerAlpha = "qwertyuiopasdfghjklzxcvbnm";
@@ -14,11 +11,14 @@ var generatePassword = function () {
   var char = "0";
   //setup for future for loop for RNG
   var promptOne = window.prompt("Password length between 8-128 characters");
+  var selectedChar = [];
+  var password = "";
   //validation for correct response
   if (!promptOne) {
     window.alert("Please input a valid response.");
     generatePassword();
   } else if (promptOne >= 8 && promptOne <= 128) {
+    promptOne = parseInt(promptOne);
   } else {
     window.alert("Please input a valid response.");
     generatePassword();
@@ -26,32 +26,30 @@ var generatePassword = function () {
   //setting what characters are used
   var promptTwo = window.confirm("Do you want lowercase charaters included?");
   if (promptTwo) {
-    char = char + "1";
-  } else {
-    char = char + "0";
+    selectedChar.push(lowerAlpha);
   }
   var promptThree = window.confirm(
     "Do you want uppercase characters included?"
   );
   if (promptThree) {
-    char = char + "1";
-  } else {
-    char = char + "0";
+    selectedChar.push(upperAlpha);
   }
   var promptFour = window.confirm("Do you want numbers included?");
   if (promptFour) {
-    char = char + "1";
-  } else {
-    char = char + "0";
+    selectedChar.push(numbers);
   }
   var promptFive = window.confirm("Do you want special charaters");
   if (promptFive) {
-    char = char + "1";
-  } else {
-    char = char + "0";
+    selectedChar.push(specialChar);
   }
 
-  switch (char) {
+  for (i = 0; i <= promptOne; i++) {
+    var index = Math.floor(Math.random() * selectedChar.length + 1);
+    password =
+      password +
+      selectedChar[index].charAt(
+        Math.floor(Math.random() * selectedChar[index].length + 1)
+      );
   }
 };
 // Get references to the #generate element
