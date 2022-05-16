@@ -7,8 +7,6 @@ var upperAlpha = "QWERTYUIOPASDFGHJKLZXCVBNM";
 var specialChar = "!\"#$%&'()*+,-./;:<=>?@[]\\^_`{}|~";
 //start of generator
 var generatePassword = function () {
-  //setup for switch statement
-  var char = "0";
   //setup for future for loop for RNG
   var promptOne = window.prompt("Password length between 8-128 characters");
   var selectedChar = [];
@@ -17,8 +15,10 @@ var generatePassword = function () {
   if (!promptOne) {
     window.alert("Please input a valid response.");
     generatePassword();
+    //passing condition
   } else if (promptOne >= 8 && promptOne <= 128) {
     promptOne = parseInt(promptOne);
+    //catch all
   } else {
     window.alert("Please input a valid response.");
     generatePassword();
@@ -42,15 +42,27 @@ var generatePassword = function () {
   if (promptFive) {
     selectedChar.push(specialChar);
   }
-
+  // RNG using first var to set length of for loop
   for (i = 0; i <= promptOne; i++) {
-    var index = Math.floor(Math.random() * selectedChar.length + 1);
-    password =
-      password +
-      selectedChar[index].charAt(
-        Math.floor(Math.random() * selectedChar[index].length + 1)
-      );
+    // guarentee password meets condition
+    if (i < selectedChar.length) {
+      password =
+        password +
+        selectedChar[i].charAt(
+          Math.floor(Math.random() * (selectedChar[i].length - 1) + 1)
+        );
+      //finish generating latter part of password
+    } else {
+      var index = Math.floor(Math.random() * selectedChar.length - 1) + 1;
+      password =
+        password +
+        selectedChar[index].charAt(
+          Math.floor(Math.random() * (selectedChar[index].length - 1) + 1)
+        );
+    }
   }
+  console.log(password);
+  return password;
 };
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
