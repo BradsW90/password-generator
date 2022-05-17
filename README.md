@@ -23,3 +23,8 @@
 - THEN a password is generated that matches the selected criteria
 - WHEN the password is generated
 - THEN the password is either displayed in an alert or written to the page
+
+## The Web App
+
+![Web App Screenshot](./assets/Image/Web-App-Screenshot.jpg)
+Visit the page!:[bradsw90.github.io/password-generator/](https://bradsw90.github.io/password-generator/)
