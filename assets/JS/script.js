@@ -42,6 +42,13 @@ var generatePassword = function () {
   if (promptFive) {
     selectedChar.push(specialChar);
   }
+  //catch if user declined all characters
+  if (selectedChar.length < 1) {
+    window.alert(
+      "You have to have at lease one type of character! Please try again!"
+    );
+    generatePassword();
+  }
   // RNG using first var to set length of for loop
   for (i = 0; i <= promptOne; i++) {
     // guarentee password meets condition
